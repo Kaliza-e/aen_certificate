@@ -212,7 +212,7 @@ export default function DashboardPage() {
         >
           {/* Welcome header */}
           <div className="mb-6">
-            <h2 className="text-2xl font-serif font-semibold text-navy-900">
+            <h2 className="text-xl sm:text-2xl font-serif font-semibold text-navy-900">
               Certificate Generator
             </h2>
             <p className="text-sm text-gray-500 mt-1">
@@ -224,7 +224,7 @@ export default function DashboardPage() {
           <StatisticsCards stats={stats} />
 
           {/* Quick actions */}
-          <div className="flex gap-3 mb-6 mt-2">
+          <div className="flex flex-wrap gap-3 mb-6 mt-2">
             <button
               onClick={() => setShowSignatoryModal(true)}
               className="px-4 py-2 text-sm font-medium text-navy-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all"

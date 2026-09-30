@@ -46,9 +46,9 @@ export default function SuccessModal({ certId, recipient, award, onClose, onGene
             has been successfully generated.
           </p>
 
-          <div className="flex items-center justify-center gap-4 text-xs text-gray-400 mb-6">
-            <span className="font-mono bg-gray-50 px-2 py-1 rounded">{certId}</span>
-            <span>{award}</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-gray-400 mb-6">
+            <span className="font-mono bg-gray-50 px-2 py-1 rounded break-all text-center">{certId}</span>
+            <span className="text-center">{award}</span>
           </div>
 
           <div className="space-y-2.5">

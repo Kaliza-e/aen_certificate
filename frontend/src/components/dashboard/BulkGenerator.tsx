@@ -94,11 +94,11 @@ export default function BulkGenerator({ logoUrl, onClose, onComplete }: Props) {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-5">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-5">
           {/* CSV Format info */}
           <div className="bg-gray-50 rounded-xl p-4">
             <p className="text-sm font-medium text-navy-900 mb-2">CSV Format</p>
-            <code className="text-xs text-gray-500 block bg-white p-2 rounded-lg border border-gray-100 font-mono">
+            <code className="text-xs text-gray-500 block bg-white p-2 rounded-lg border border-gray-100 font-mono break-all whitespace-normal">
               name,certificateType,award,eventName,description,eventDate
             </code>
           </div>
@@ -123,8 +123,8 @@ export default function BulkGenerator({ logoUrl, onClose, onComplete }: Props) {
               <p className="text-sm font-medium text-navy-900 mb-2">
                 {records.length} record{records.length !== 1 ? 's' : ''} found
               </p>
-              <div className="max-h-48 overflow-y-auto border border-gray-100 rounded-xl">
-                <table className="w-full text-xs">
+              <div className="max-h-48 overflow-auto border border-gray-100 rounded-xl">
+                <table className="w-full text-xs min-w-[280px]">
                   <thead className="bg-gray-50 sticky top-0">
                     <tr>
                       <th className="text-left py-2 px-3 text-gray-500 font-medium">#</th>
@@ -174,7 +174,7 @@ export default function BulkGenerator({ logoUrl, onClose, onComplete }: Props) {
         </div>
 
         {/* Actions */}
-        <div className="px-6 py-4 border-t border-gray-100 flex justify-end gap-3">
+        <div className="px-6 py-4 border-t border-gray-100 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg transition-all"
@@ -184,7 +184,7 @@ export default function BulkGenerator({ logoUrl, onClose, onComplete }: Props) {
           {!completed && records.length > 0 && !generating && (
             <button
               onClick={handleGenerateAll}
-              className="px-5 py-2 bg-aen-orange text-white text-sm font-medium rounded-lg hover:bg-aen-orange/90 transition-all flex items-center gap-2"
+              className="px-5 py-2 bg-aen-orange text-white text-sm font-medium rounded-lg hover:bg-aen-orange/90 transition-all flex items-center justify-center gap-2"
             >
               <FileText size={14} />
               Generate {records.length} Certificate{records.length !== 1 ? 's' : ''}

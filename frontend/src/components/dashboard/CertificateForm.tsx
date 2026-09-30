@@ -92,7 +92,7 @@ export default function CertificateForm({ formData, setFormData, onGenerate, gen
         </div>
 
         {/* Dates */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Event Date</label>
             <input
@@ -119,7 +119,7 @@ export default function CertificateForm({ formData, setFormData, onGenerate, gen
             <button
               onClick={onUpdate}
               disabled={generating || !formData.recipientName || !formData.award || !formData.eventName}
-              className="flex-1 py-3 bg-aen-orange text-white text-sm font-semibold rounded-xl hover:bg-aen-orange/90 focus:outline-none focus:ring-2 focus:ring-aen-orange/20 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+              className="flex-1 min-w-0 py-3 bg-aen-orange text-white text-sm font-semibold rounded-xl hover:bg-aen-orange/90 focus:outline-none focus:ring-2 focus:ring-aen-orange/20 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
             >
               {generating ? (
                 <>
@@ -132,7 +132,7 @@ export default function CertificateForm({ formData, setFormData, onGenerate, gen
             </button>
             <button
               onClick={onCancelEdit}
-              className="px-4 py-3 border border-gray-200 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-50 transition-all"
+              className="px-4 py-3 border border-gray-200 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-50 transition-all shrink-0 whitespace-nowrap"
             >
               Cancel
             </button>

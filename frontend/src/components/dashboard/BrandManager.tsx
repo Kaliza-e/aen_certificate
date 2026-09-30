@@ -61,7 +61,7 @@ export default function BrandManager({ logoUrl: initial, onClose }: Props) {
             <p className="text-sm font-medium text-gray-700 mb-3">Current AEN Logo</p>
             <div className="flex items-center justify-center p-6 bg-gray-50 rounded-xl border border-gray-100">
               {logoUrl ? (
-                <img src={logoUrl} alt="AEN Logo" className="h-20 object-contain" />
+                <img src={logoUrl} alt="AEN Logo" className="h-20 max-w-full object-contain" />
               ) : (
                 <p className="text-sm text-gray-400">No logo uploaded yet.</p>
               )}
@@ -73,9 +73,9 @@ export default function BrandManager({ logoUrl: initial, onClose }: Props) {
             <p className="text-sm font-medium text-gray-700 mb-2">Upload New Logo</p>
             <div
               onClick={() => fileRef.current?.click()}
-              className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-gray-200 rounded-xl text-sm text-gray-500 hover:border-navy-900/30 hover:text-navy-700 cursor-pointer transition-all"
+              className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-gray-200 rounded-xl text-sm text-gray-500 hover:border-navy-900/30 hover:text-navy-700 cursor-pointer transition-all text-center break-all"
             >
-              <Upload size={16} />
+              <Upload size={16} className="shrink-0" />
               {file ? file.name : 'Click to upload (PNG, SVG, JPEG)'}
             </div>
             <input ref={fileRef} type="file" accept=".png,.svg,.jpg,.jpeg,image/png,image/svg+xml,image/jpeg" onChange={handleFileChange} className="hidden" />
@@ -83,13 +83,13 @@ export default function BrandManager({ logoUrl: initial, onClose }: Props) {
 
           {preview && file && (
             <div className="flex items-center gap-3">
-              <div className="flex-1 p-3 bg-gray-50 rounded-lg flex items-center justify-center">
-                <img src={preview} alt="Preview" className="h-14 object-contain" />
+              <div className="flex-1 min-w-0 p-3 bg-gray-50 rounded-lg flex items-center justify-center">
+                <img src={preview} alt="Preview" className="h-14 max-w-full object-contain" />
               </div>
               <button
                 onClick={handleUpload}
                 disabled={loading}
-                className="px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-lg hover:bg-navy-800 disabled:opacity-50 transition-all flex items-center gap-2"
+                className="px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-lg hover:bg-navy-800 disabled:opacity-50 transition-all flex items-center gap-2 shrink-0 whitespace-nowrap"
               >
                 {loading ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
