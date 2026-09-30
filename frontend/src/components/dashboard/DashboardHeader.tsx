@@ -1,8 +1,11 @@
 import { useAuth } from '../../hooks/useAuth';
-import { LogOut } from 'lucide-react';
+import { LogOut, Image as ImageIcon } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function DashboardHeader() {
   const { user, logout } = useAuth();
+  const location = useLocation();
+  const isPostEdit = location.pathname.includes('post-edit');
 
   return (
     <header className="bg-navy-900 border-b border-navy-800">
@@ -10,17 +13,44 @@ export default function DashboardHeader() {
         <div className="flex items-center justify-between h-16">
           {/* Logo + title */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center">
-              <span className="text-white font-serif text-lg font-bold">A</span>
-            </div>
-            <div>
-              <h1 className="text-white text-sm font-semibold tracking-tight">
-                Certificate Generator
-              </h1>
-              <p className="text-white/40 text-[10px] tracking-widest uppercase">
-                African Entrepreneurs Network
-              </p>
-            </div>
+            <Link to="/dashboard" className="flex items-center gap-3">
+              <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center">
+                <span className="text-white font-serif text-lg font-bold">A</span>
+              </div>
+              <div>
+                <h1 className="text-white text-sm font-semibold tracking-tight">
+                  Certificate Generator
+                </h1>
+                <p className="text-white/40 text-[10px] tracking-widest uppercase">
+                  African Entrepreneurs Network
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          {/* Nav links */}
+          <div className="hidden md:flex items-center gap-1">
+            <Link
+              to="/dashboard"
+              className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
+                !isPostEdit
+                  ? 'text-white bg-white/10'
+                  : 'text-white/50 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              Certificates
+            </Link>
+            <Link
+              to="/dashboard/post-edit"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all ${
+                isPostEdit
+                  ? 'text-white bg-white/10'
+                  : 'text-white/50 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <ImageIcon size={14} />
+              Post Edit
+            </Link>
           </div>
 
           {/* User info + logout */}

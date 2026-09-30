@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { certificateAPI, brandAPI } from '../services/api';
+import { Link } from 'react-router-dom';
+import { Image as ImageIcon } from 'lucide-react';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
 import StatisticsCards from '../components/dashboard/StatisticsCards';
 import CertificateForm from '../components/dashboard/CertificateForm';
@@ -235,6 +237,13 @@ export default function DashboardPage() {
             >
               Brand Assets
             </button>
+            <Link
+              to="/dashboard/post-edit"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-navy-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all"
+            >
+              <ImageIcon size={16} />
+              Instagram Design
+            </Link>
             <button
               onClick={() => setShowBulkModal(true)}
               className="px-4 py-2 text-sm font-medium text-white bg-aen-orange rounded-lg hover:bg-aen-orange/90 transition-all"
