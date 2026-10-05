@@ -372,6 +372,9 @@ export default function DesignControls({ design, setDesign }: DesignControlsProp
               />
             ))}
           </div>
+          <p className="mt-1.5 text-xs text-gray-500">
+            Choosing a background also applies its matching accent color.
+          </p>
         </div>
 
         <div>
