@@ -6,6 +6,15 @@ export interface UploadedImage {
   dataUrl: string;
 }
 
+export const POST_COLOR_THEMES = [
+  { name: 'Orange', background: '#FDF1E8', accent: '#E8792B' },
+  { name: 'Navy', background: '#EEF0F7', accent: '#1A2340' },
+  { name: 'Gold', background: '#FBF6E8', accent: '#C9963B' },
+  { name: 'Pink', background: '#F9EDF2', accent: '#C2185B' },
+  { name: 'Green', background: '#EDF5EE', accent: '#2E7D32' },
+  { name: 'Blue', background: '#EDF3FA', accent: '#1565C0' },
+];
+
 export interface PostDesign {
   templateType: TemplateType;
 
@@ -27,6 +36,7 @@ export interface PostDesign {
 
   // Shared
   websiteUrl: string;
+  backgroundColor: string;
   accentColor: string;
 
   // Program name shown on detail
@@ -53,6 +63,7 @@ export const defaultPostDesign: PostDesign = {
   detailIcon: null,
 
   websiteUrl: 'aen.network',
+  backgroundColor: '#ffffff',
   accentColor: '#E8792B',
   programShortName: 'Investment Competition',
 };

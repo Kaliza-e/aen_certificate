@@ -1,6 +1,12 @@
 import { useRef, useState } from 'react';
 import { Upload, X, Plus, Trash2 } from 'lucide-react';
-import { PostDesign, TemplateType, UploadedImage, defaultPostDesign } from './templateTypes';
+import {
+  PostDesign,
+  POST_COLOR_THEMES,
+  TemplateType,
+  UploadedImage,
+  defaultPostDesign,
+} from './templateTypes';
 
 interface DesignControlsProps {
   design: PostDesign;
@@ -344,6 +350,31 @@ export default function DesignControls({ design, setDesign }: DesignControlsProp
         />
 
         <div>
+          <label className="block text-xs font-medium text-gray-600 mb-1.5">Background Color</label>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { name: 'White', background: '#ffffff', accent: '#E8792B' },
+              ...POST_COLOR_THEMES,
+            ].map((theme) => (
+              <button
+                key={theme.name}
+                type="button"
+                title={`${theme.name} background`}
+                aria-label={`${theme.name} background`}
+                aria-pressed={design.backgroundColor === theme.background}
+                onClick={() => update({ backgroundColor: theme.background, accentColor: theme.accent })}
+                className={`w-8 h-8 rounded-full border-2 transition-transform hover:scale-110 ${
+                  design.backgroundColor === theme.background
+                    ? 'border-navy-900 scale-110'
+                    : 'border-gray-200'
+                }`}
+                style={{ backgroundColor: theme.background }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div>
           <label className="block text-xs font-medium text-gray-600 mb-1.5">Accent Color</label>
           <div className="flex items-center gap-2">
             <input
@@ -360,14 +391,17 @@ export default function DesignControls({ design, setDesign }: DesignControlsProp
             />
           </div>
           <div className="flex gap-1.5 mt-2">
-            {['#E8792B', '#1a2340', '#C9963B', '#C2185B', '#2E7D32', '#1565C0'].map((c) => (
+            {POST_COLOR_THEMES.map(({ name, accent }) => (
               <button
-                key={c}
-                onClick={() => update({ accentColor: c })}
+                key={accent}
+                type="button"
+                title={`${name} accent`}
+                aria-label={`${name} accent`}
+                onClick={() => update({ accentColor: accent })}
                 className={`w-7 h-7 rounded-full border-2 transition-transform hover:scale-110 ${
-                  design.accentColor === c ? 'border-navy-900 scale-110' : 'border-transparent'
+                  design.accentColor === accent ? 'border-navy-900 scale-110' : 'border-transparent'
                 }`}
-                style={{ backgroundColor: c }}
+                style={{ backgroundColor: accent }}
               />
             ))}
           </div>

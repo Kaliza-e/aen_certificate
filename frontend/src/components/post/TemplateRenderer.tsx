@@ -158,8 +158,10 @@ async function drawCoverIcons(
   if (icons.length === 0) {
     for (let i = 0; i < 5; i++) {
       roundRect(ctx, x, y, iconSize, iconSize, 20);
-      ctx.fillStyle = 'rgba(232, 121, 43, 0.12)';
+      ctx.globalAlpha = 0.12;
+      ctx.fillStyle = accentColor;
       ctx.fill();
+      ctx.globalAlpha = 1;
       ctx.strokeStyle = accentColor;
       ctx.lineWidth = 3;
       ctx.stroke();
@@ -198,9 +200,9 @@ async function renderCover(
   design: PostDesign,
   logoImg: HTMLImageElement | null
 ) {
-  const { accentColor, titleLines, highlightText, subtitle, coverIcons, websiteUrl } = design;
+  const { backgroundColor, accentColor, titleLines, highlightText, subtitle, coverIcons, websiteUrl } = design;
 
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = backgroundColor || '#ffffff';
   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   drawGrid(ctx, CANVAS_SIZE);
   drawTopAccent(ctx, accentColor, CANVAS_SIZE);
@@ -276,6 +278,7 @@ async function renderDetail(
 ) {
   const {
     accentColor,
+    backgroundColor,
     numberBadge,
     detailIcon,
     programName,
@@ -286,7 +289,7 @@ async function renderDetail(
     websiteUrl,
   } = design;
 
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = backgroundColor || '#ffffff';
   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   drawGrid(ctx, CANVAS_SIZE);
   drawTopAccent(ctx, accentColor, CANVAS_SIZE);
