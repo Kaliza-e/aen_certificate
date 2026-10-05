@@ -31,18 +31,18 @@ const statusColors: Record<string, string> = {
 
 export default function CertificateHistory({ certificates, search, setSearch, onRevoke, onDelete, onEdit, onRefresh, onDownloadPdf, onDownloadImage }: Props) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <h3 className="text-lg font-semibold text-navy-900">Recent Certificates</h3>
-        <div className="flex items-center gap-3">
-          <div className="relative">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="relative flex-1 sm:flex-none">
             <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by name, ID, award..."
-              className="pl-8 pr-3 py-1.5 border border-gray-200 rounded-lg text-sm text-navy-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-navy-900/10 w-56"
+              className="pl-8 pr-3 py-1.5 border border-gray-200 rounded-lg text-sm text-navy-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-navy-900/10 w-full sm:w-56"
             />
           </div>
           <button
@@ -59,8 +59,8 @@ export default function CertificateHistory({ certificates, search, setSearch, on
           <p className="text-sm">No certificates found.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-x-auto -mx-4 sm:-mx-6 px-4 sm:px-6">
+          <table className="w-full min-w-[760px]">
             <thead>
               <tr className="border-b border-gray-100">
                 <th className="text-left text-xs font-medium text-gray-400 uppercase tracking-wider py-2.5 px-3">Certificate ID</th>

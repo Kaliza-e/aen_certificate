@@ -24,16 +24,16 @@ export default function StatisticsCards({ stats }: { stats: Stats }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.05 }}
-          className="bg-white rounded-xl border border-gray-100 px-4 py-3 flex items-center gap-3 shadow-sm"
+          className="bg-white rounded-xl border border-gray-100 px-3 sm:px-4 py-3 flex items-center gap-2 sm:gap-3 shadow-sm min-w-0"
         >
-          <div className={`w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center ${card.color}`}>
+          <div className={`w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 ${card.color}`}>
             <card.icon size={18} />
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-xl font-semibold text-navy-900 leading-none">
               {(stats as any)[card.key] || 0}
             </p>
-            <p className="text-[11px] text-gray-400 mt-0.5">{card.label}</p>
+            <p className="text-[11px] text-gray-400 mt-0.5 leading-tight">{card.label}</p>
           </div>
         </motion.div>
       ))}

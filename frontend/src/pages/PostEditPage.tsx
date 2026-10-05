@@ -53,8 +53,8 @@ export default function PostEditPage() {
           transition={{ duration: 0.3 }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+            <div className="min-w-0">
               <Link
                 to="/dashboard"
                 className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-navy-900 transition-colors mb-2"
@@ -72,7 +72,7 @@ export default function PostEditPage() {
             <button
               onClick={handleDownload}
               disabled={downloading}
-              className="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-aen-orange rounded-lg hover:bg-aen-orange/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+              className="flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-aen-orange rounded-lg hover:bg-aen-orange/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm shrink-0 w-full sm:w-auto whitespace-nowrap"
             >
               <Download size={16} />
               {downloading ? 'Preparing...' : 'Download PNG'}

@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './hooks/useAuth';
+import { useIdleLogout } from './hooks/useIdleLogout';
+import SessionTimeoutModal from './components/SessionTimeoutModal';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import PostEditPage from './pages/PostEditPage';
@@ -28,6 +30,21 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function IdleLogoutGuard() {
+  const { user, logout } = useAuth();
+  const { showWarning, secondsLeft, staySignedIn } = useIdleLogout(logout, !!user);
+
+  if (!showWarning) return null;
+
+  return (
+    <SessionTimeoutModal
+      secondsLeft={secondsLeft}
+      onStay={staySignedIn}
+      onLogout={logout}
+    />
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -38,6 +55,7 @@ export default function App() {
           <Route path="/dashboard/post-edit" element={<ProtectedRoute><PostEditPage /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
+        <IdleLogoutGuard />
         <Toaster
           position="top-right"
           toastOptions={{

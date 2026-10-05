@@ -73,7 +73,7 @@ export default function SignatoryManager({ signatories: initial, onClose }: Prop
 
         {/* Add form */}
         <div className="px-6 py-4 border-b border-gray-50 bg-gray-50/50">
-          <div className="grid grid-cols-2 gap-3 mb-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
             <input
               type="text"
               value={name}
@@ -92,16 +92,16 @@ export default function SignatoryManager({ signatories: initial, onClose }: Prop
           <div className="flex items-center gap-3">
             <div
               onClick={() => fileRef.current?.click()}
-              className="flex items-center gap-2 px-3 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-navy-900/30 hover:text-navy-700 cursor-pointer transition-all flex-1"
+              className="flex items-center gap-2 px-3 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-navy-900/30 hover:text-navy-700 cursor-pointer transition-all flex-1 min-w-0"
             >
-              <Upload size={14} />
-              {signatureFile ? signatureFile.name : 'Upload signature (PNG/SVG)'}
+              <Upload size={14} className="shrink-0" />
+              <span className="truncate">{signatureFile ? signatureFile.name : 'Upload signature (PNG/SVG)'}</span>
             </div>
             <input ref={fileRef} type="file" accept=".png,.svg,image/png,image/svg+xml" onChange={handleFileChange} className="hidden" />
             <button
               onClick={handleAdd}
               disabled={!name || !title || loading}
-              className="px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-lg hover:bg-navy-800 disabled:opacity-50 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-lg hover:bg-navy-800 disabled:opacity-50 transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap"
             >
               <Plus size={14} />
               Add
@@ -116,7 +116,7 @@ export default function SignatoryManager({ signatories: initial, onClose }: Prop
         </div>
 
         {/* List */}
-        <div className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 min-h-0 overflow-y-auto px-6 py-4">
           {signatories.length === 0 ? (
             <p className="text-sm text-gray-400 text-center py-8">No signatories yet.</p>
           ) : (
@@ -124,17 +124,17 @@ export default function SignatoryManager({ signatories: initial, onClose }: Prop
               {signatories.map((s) => (
                 <div key={s._id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                   {s.signatureUrl ? (
-                    <img src={s.signatureUrl} alt={s.name} className="h-8 w-14 object-contain" />
+                    <img src={s.signatureUrl} alt={s.name} className="h-8 w-14 object-contain shrink-0" />
                   ) : (
-                    <div className="h-8 w-14 bg-gray-200 rounded" />
+                    <div className="h-8 w-14 bg-gray-200 rounded shrink-0" />
                   )}
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-navy-900">{s.name}</p>
-                    <p className="text-xs text-gray-400">{s.title}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-navy-900 truncate">{s.name}</p>
+                    <p className="text-xs text-gray-400 truncate">{s.title}</p>
                   </div>
                   <button
                     onClick={() => handleDelete(s._id)}
-                    className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-all"
+                    className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-all shrink-0"
                   >
                     <Trash2 size={14} />
                   </button>
